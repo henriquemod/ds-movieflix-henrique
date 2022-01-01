@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './styles.css'
 const Movies = () => {
   return (
@@ -7,10 +8,10 @@ const Movies = () => {
       </div>
       <ul className="list-group">
         <li className="mb-2">
-          <a href="#movie">Acessar movie 1</a>
+          <Link to="/movies/1">Acessar movie 1</Link>
         </li>
         <li className="mb-2">
-          <a href="#movie">Acessar movie 2</a>
+          <Link to="/movies/2">Acessar movie 2</Link>
         </li>
       </ul>
     </div>

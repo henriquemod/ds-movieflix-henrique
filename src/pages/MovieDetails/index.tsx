@@ -1,10 +1,34 @@
+import { AxiosRequestConfig } from 'axios'
 import CardReview from 'components/CardReview'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { MovieReview } from 'types/MovieReview'
+import { requestBackend } from 'utils/requests'
 import './styles.css'
+
+type UrlParams = {
+  movieId: string
+}
+
 const MovieDetails = () => {
+  const { movieId } = useParams<UrlParams>()
+  const [movieReviews, setMovieReviews] = useState<MovieReview[]>()
+
+  useEffect(() => {
+    const params: AxiosRequestConfig = {
+      url: `/movies/${movieId}/reviews`,
+      withCredentials: true,
+    }
+
+    requestBackend(params).then((response) => {
+      setMovieReviews(response.data)
+    })
+  }, [movieId])
+
   return (
     <div className="movie-details-container">
       <div className="title-container mb-4">
-        <h1>Tela detalhes do filme id: 1</h1>
+        <h1>Tela detalhes do filme id: {movieId}</h1>
       </div>
       <div className="post-review-container">
         <form>
@@ -23,12 +47,14 @@ const MovieDetails = () => {
         </form>
       </div>
       <div className="list-review-container">
-        <CardReview />
-        <CardReview />
-        <CardReview />
-        <CardReview />
-        <CardReview />
-        <CardReview />
+        <ul>
+          {movieReviews &&
+            movieReviews.map((review) => (
+              <li key={review.id}>
+                <CardReview reviewData={review} />
+              </li>
+            ))}
+        </ul>
       </div>
     </div>
   )

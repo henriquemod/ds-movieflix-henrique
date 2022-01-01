@@ -18,6 +18,11 @@
   margin-bottom: 20px;
 }
 
+.list-review-container ul {
+  list-style: none;
+  padding: 0;
+}
+
 .post-review-container textarea,
 .post-review-container textarea:focus {
   background-color: white;
