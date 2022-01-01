@@ -22,16 +22,17 @@
   display: flex;
   max-height: 30px;
   width: 100px;
-  display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.nav-login-logout a {
   font-size: 0.6em;
   font-weight: 700;
   text-decoration: none;
   letter-spacing: -0.015em;
+  color: black;
+  text-transform: uppercase;
+}
+
+.nav-login-logout:hover {
   color: black;
 }
 
