@@ -1,12 +1,11 @@
 import { Link, useHistory, useLocation } from 'react-router-dom'
-//import ButtonIcon from 'components/ButtonIcon'
-//import { requestBackendLogin } from 'util/requests'
+import { requestBackendLogin } from 'utils/requests'
 import { useForm } from 'react-hook-form'
 import { useContext, useState } from 'react'
-//import { AuthContext } from 'AuthContext'
+import { AuthContext } from 'AuthContext'
 import './styles.css'
-//import { saveAuthData } from 'util/storage'
-//import { getTokenData, isAuthenticated } from 'util/auth'
+import { saveAuthData } from 'utils/storage'
+import { getTokenData, isAuthenticated } from 'utils/auth'
 
 type FormData = {
   username: string
@@ -27,27 +26,27 @@ const Login = () => {
   } = useForm<FormData>()
   const [hasError, setHasError] = useState(false)
 
-  /*
   const history = useHistory()
   const { setAuthContextData } = useContext(AuthContext)
-  */
 
   const onSubmit = async (formData: FormData) => {
     console.log('SUBMIT')
+    console.log(formData)
 
-    /*
     try {
       const loginRequest = await requestBackendLogin(formData)
+      console.log(loginRequest)
+
       saveAuthData(loginRequest.data)
       setAuthContextData({
         authenticated: isAuthenticated(),
         tokenData: getTokenData(),
       })
-      history.replace(from)
+      //history.replace(from)
       setHasError(false)
     } catch (error) {
       setHasError(true)
-    }*/
+    }
   }
   return (
     <div className="base-card login-card">
@@ -92,9 +91,9 @@ const Login = () => {
           </div>
         </div>
         <div className="login-submit">
-          <a href="#login" className="btn btn-primary">
+          <button className="btn btn-primary" type="submit">
             FAZER LOGIN
-          </a>
+          </button>
         </div>
       </form>
     </div>
