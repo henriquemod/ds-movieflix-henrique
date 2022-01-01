@@ -1,0 +1,45 @@
+.movie-details-container {
+  padding: 12px;
+  font-size: 24px;
+}
+
+.title-container h1 {
+  color: #fff;
+  font-size: 1em;
+}
+
+.post-review-container,
+.list-review-container {
+  width: 100%;
+  padding: 12px;
+  background: #6c6c6c;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.post-review-container textarea,
+.post-review-container textarea:focus {
+  background-color: white;
+}
+
+.login-submit a {
+  width: 100%;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+@media (min-width: 576px) {
+  .movie-details-container {
+    padding: 50px;
+    font-size: 24px;
+  }
+  .login-submit {
+    display: flex;
+    justify-content: center;
+  }
+  .login-submit a {
+    width: 300px;
+  }
+}
