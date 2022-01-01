@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios'
 import CardReview from 'components/CardReview'
 import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
 import { MovieReview } from 'types/MovieReview'
 import { hasAnyRoles } from 'utils/auth'
@@ -11,9 +12,56 @@ type UrlParams = {
   movieId: string
 }
 
+type FormData = {
+  review: string
+}
+
+type FormReview = {
+  text: string
+  movieId: string
+}
+
 const MovieDetails = () => {
   const { movieId } = useParams<UrlParams>()
   const [movieReviews, setMovieReviews] = useState<MovieReview[]>()
+  const [review, setReview] = useState<string>()
+  const [hasError, setHasError] = useState(false)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>()
+
+  const handleReviewText = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setReview(event.target.value)
+  }
+
+  const handleSubmitReview = async () => {
+    const data = {
+      text: review!,
+      movieId: movieId,
+    } as FormReview
+
+    const params: AxiosRequestConfig = {
+      method: 'POST',
+      url: '/reviews',
+      withCredentials: true,
+      data,
+    }
+
+    try {
+      const loginRequest = await requestBackend(params)
+      const buildReviews: MovieReview = loginRequest.data
+      const newReviews = movieReviews
+
+      newReviews?.push(buildReviews)
+      setMovieReviews(newReviews)
+
+      setHasError(false)
+    } catch (error) {
+      setHasError(true)
+    }
+  }
 
   useEffect(() => {
     const params: AxiosRequestConfig = {
@@ -33,18 +81,31 @@ const MovieDetails = () => {
       </div>
       {hasAnyRoles(['ROLE_MEMBER']) && (
         <div className="post-review-container">
-          <form>
+          <form onSubmit={handleSubmit(handleSubmitReview)}>
             <div className="mb-3">
               <textarea
-                className="form-control base-input"
-                id="textarea"
+                {...register('review', {
+                  required: 'Campo obrigatorio',
+                })}
+                className={`form-control base-input ${
+                  errors.review ? 'is-invalid' : ''
+                }`}
+                name="review"
+                value={review}
                 placeholder="Deixe aqui sua opinião"
+                onChange={handleReviewText}
               ></textarea>
             </div>
+            {hasError && (
+              <div className="alert alert-danger">
+                Erro ao tentar efetuar o login
+              </div>
+            )}
+            <div className="invalid-feedback d-block">
+              {errors.review?.message}
+            </div>
             <div className="login-submit">
-              <a href="#login" className="btn btn-primary">
-                Salvar avaliação
-              </a>
+              <button className="btn btn-primary test">Salvar avaliação</button>
             </div>
           </form>
         </div>
@@ -63,4 +124,5 @@ const MovieDetails = () => {
     </div>
   )
 }
+
 export default MovieDetails

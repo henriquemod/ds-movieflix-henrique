@@ -28,7 +28,11 @@
   background-color: white;
 }
 
-.login-submit a {
+.login-submit {
+  font-size: 0.8em;
+}
+
+.login-submit button {
   width: 100%;
   letter-spacing: -0.015em;
   font-weight: 700;
@@ -40,11 +44,13 @@
     padding: 50px;
     font-size: 24px;
   }
+
   .login-submit {
     display: flex;
     justify-content: center;
   }
-  .login-submit a {
-    width: 300px;
+
+  .login-submit button {
+    max-width: 300px;
   }
 }
