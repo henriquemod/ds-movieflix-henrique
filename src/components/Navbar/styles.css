@@ -34,3 +34,9 @@
   letter-spacing: -0.015em;
   color: black;
 }
+
+@media (min-width: 768px) {
+  .main-nav {
+    padding: 0 38px;
+  }
+}
