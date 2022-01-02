@@ -71,12 +71,16 @@
 
 @media (min-width: 1400px) {
   .auth-container {
+    justify-content: center;
     padding: 55px;
-    margin: 0 50px;
   }
   .auth-banner-container {
     width: 650px;
-    padding: 20px;
+  }
+
+  .auth-container div {
+    margin-left: 20px;
+    margin-right: 20px;
   }
 
   .auth-banner-container h1 {

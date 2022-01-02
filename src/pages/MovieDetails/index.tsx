@@ -81,8 +81,11 @@ const MovieDetails = () => {
       </div>
       {hasAnyRoles(['ROLE_MEMBER']) && (
         <div className="post-review-container">
-          <form onSubmit={handleSubmit(handleSubmitReview)}>
-            <div className="mb-3">
+          <form
+            onSubmit={handleSubmit(handleSubmitReview)}
+            className="form-review"
+          >
+            <div className="mb-2">
               <textarea
                 {...register('review', {
                   required: 'Campo obrigatorio',
@@ -92,7 +95,7 @@ const MovieDetails = () => {
                 }`}
                 name="review"
                 value={review}
-                placeholder="Deixe aqui sua opinião"
+                placeholder="Deixe sua avaliação aqui"
                 onChange={handleReviewText}
               ></textarea>
             </div>
@@ -104,8 +107,8 @@ const MovieDetails = () => {
             <div className="invalid-feedback d-block">
               {errors.review?.message}
             </div>
-            <div className="login-submit">
-              <button className="btn btn-primary test">Salvar avaliação</button>
+            <div className="review-submit">
+              <button className="btn btn-primary">Salvar avaliação</button>
             </div>
           </form>
         </div>

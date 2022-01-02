@@ -89,9 +89,7 @@ const Login = () => {
           <div className="invalid-feedback d-block">
             {errors.password?.message}
           </div>
-        </div>
-        <div className="login-submit">
-          <button className="btn btn-primary" type="submit">
+          <button className="btn btn-primary login-submit" type="submit">
             FAZER LOGIN
           </button>
         </div>

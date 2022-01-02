@@ -28,15 +28,17 @@
   background-color: white;
 }
 
-.login-submit {
-  font-size: 0.8em;
+.review-submit {
+  font-size: 0.5em;
+  margin-top: 1px;
 }
 
-.login-submit button {
+.review-submit button {
   width: 100%;
-  letter-spacing: -0.015em;
-  font-weight: 700;
   text-transform: uppercase;
+  font-weight: 700;
+  margin-top: 10px;
+  height: 50px;
 }
 
 @media (min-width: 576px) {
@@ -45,12 +47,12 @@
     font-size: 24px;
   }
 
-  .login-submit {
+  .review-submit {
     display: flex;
     justify-content: center;
   }
 
-  .login-submit button {
+  .review-submit button {
     max-width: 300px;
   }
 }

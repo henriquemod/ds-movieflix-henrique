@@ -8,10 +8,10 @@ const Movies = () => {
       </div>
       <ul className="list-group">
         <li className="mb-2">
-          <Link to="/movies/1">Acessar movie 1</Link>
+          <Link to="/movies/1">Acessar /movies/1</Link>
         </li>
         <li className="mb-2">
-          <Link to="/movies/2">Acessar movie 2</Link>
+          <Link to="/movies/2">Acessar /movies/2</Link>
         </li>
       </ul>
     </div>
